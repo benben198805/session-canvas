@@ -1,0 +1,29 @@
+<html>
+
+<head>
+    <script type="text/javascript">
+        window.onload = function() {
+            var testCanvas = document.createElement('canvas');
+
+            if (testCanvas.getContext !== undefined) {
+                var canvas = document.getElementById("effectsCanvas");
+                var context = canvas.getContext("2d");
+
+                // context.fillStyle = "white";
+                // context.fillRect(0, 0, canvas.width, canvas.height);
+                //
+                // context.fillStyle = "red";
+                // context.fillRect(200, 200, 100, 100);
+            } else {
+                document.writeln('Your browser does not support the canvas element.');
+            }
+        };
+    </script>
+</head>
+
+<body>
+    <h1>HTML5 Canvas Base</h1>
+    <canvas id="effectsCanvas" width="500" height="550">jjjjjjjjjjj</canvas>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<script type="text/javascript">
+    window.onload = function() {
+        //try and create a canvas element
+        var testCanvas = document.createElement('canvas');
+
+        //check if object supports getContext() method
+        if (testCanvas.getContext !== undefined) {
+            var canvas = document.getElementById("effectsCanvas");
+            var context = canvas.getContext("2d");
+
+            var SPEED = 1;
+
+
+            context.fillStyle = "black";
+            context.fillRect(0, 0, canvas.width, canvas.height);
+
+            context.fillStyle = "red";
+            context.fillRect(20, 20, 50, 50);
+
+            context.strokeStyle = "white";
+            context.lineWidth = 10;
+            context.strokeRect(20, 20, 50, 50);
+
+
+            context.strokeStyle = "blue";
+            context.lineWidth = 5;
+
+            context.beginPath();
+            context.moveTo(100, 100);
+            context.lineTo(150, 200);
+            context.lineTo(200, 200);
+            context.lineTo(200, 250);
+            context.lineTo(100, 250);
+            context.closePath();
+            context.stroke();
+            context.fill();
+
+            context.fillStyle = "white";
+            context.font = "50px Helvetica";
+            context.fillText("Hello", 200, 200);
+
+            context.beginPath();
+            context.arc(200, 340, 50, 0, Math.PI * 2, false);
+            context.fill();
+
+            var posX = 0,
+                poxY = 0;
+
+            var grd = context.createRadialGradient(1, 340, 50, 500, 340, 50);
+            grd.addColorStop(0, '#8ED6FF');
+            grd.addColorStop(1, '#004CB3');
+
+            setInterval(function() {
+                posX += SPEED;
+
+                context.fillStyle = "black";
+                context.fillRect(0, 0, canvas.width, canvas.height);
+
+                context.fillStyle = grd;
+                context.beginPath();
+                if (posX > canvas.width) {
+                    posX = 0;
+                }
+                context.arc(posX, 340, 50, 0, Math.PI * 2, false);
+
+                context.shadowColor = "grey";
+                context.shadowBlur = 2;
+                context.shadowOffsetX = -5;
+                context.shadowOffsetY = 0;
+
+                context.fill();
+            }, 30);//毫秒计
+        } else {
+            document.writeln('You are plum outta luck, cuz your browser does not support the canvas element.');
+        }
+    };
+</script>
+</head>
+
+<body>
+    <h1>HTML5 Canvas Base</h1>
+    <canvas id="effectsCanvas" width="500" height="550"> </canvas>
